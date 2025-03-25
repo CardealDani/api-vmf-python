@@ -1,34 +1,37 @@
 import os
-import json
-import base64
 import gspread
 from google.oauth2.service_account import Credentials
 
-# Recuperar a variável de ambiente
-key_json_data = os.getenv("GOOGLE_KEY_JSON")
-print(key_json_data)
+# Recuperando as variáveis de ambiente
+key_info = {
+    "type": "service_account",  # O tipo geralmente é 'service_account'
+    "project_id": os.getenv("GOOGLE_CLOUD_PROJECT_ID"),
+    "private_key_id": os.getenv("GOOGLE_CLOUD_PRIVATE_KEY_ID"),
+    "private_key": os.getenv("GOOGLE_CLOUD_PRIVATE_KEY").replace('\\n', '\n'),  # Corrigindo quebra de linha
+    "client_email": os.getenv("GOOGLE_CLOUD_CLIENT_EMAIL"),
+    "client_id": os.getenv("GOOGLE_CLOUD_CLIENT_ID"),
+    "auth_uri": os.getenv("GOOGLE_CLOUD_AUTH_URI"),
+    "token_uri": os.getenv("GOOGLE_CLOUD_TOKEN_URI"),
+    "auth_provider_x509_cert_url": os.getenv("GOOGLE_CLOUD_AUTH_PROVIDER_X509_CERT_URL"),
+    "client_x509_cert_url": os.getenv("GOOGLE_CLOUD_CLIENT_X509_CERT_URL")
+}
 
-# Verificar se a variável está definida
-if key_json_data is None:
-    raise ValueError("A variável de ambiente GOOGLE_KEY_JSON não está definida.")
+# Verificar se todas as variáveis de ambiente estão presentes
+for key, value in key_info.items():
+    if value is None:
+        raise ValueError(f"A variável de ambiente {key} não está definida.")
 
-# Decodificar a chave base64
-try:
-    # Decodificar a chave base64, e tentar convertê-la para JSON
-    decoded_data = base64.b64decode(key_json_data)
-    key_info = json.loads(decoded_data.decode('utf-8', errors='ignore'))  # Ignora erros de decodificação
-except Exception as e:
-    raise ValueError(f"Erro ao decodificar a chave: {e}")
-
-# Criar as credenciais com a chave decodificada
+# Criar as credenciais com a chave JSON reconstruída
 creds = Credentials.from_service_account_info(key_info)
 
 # Usar gspread com as credenciais
 gc = gspread.authorize(creds)
 
+# Acessar a planilha
 CODE = "1B7huX51Ta8nyxYw-Jh04GUSzlhJTezBP6XcpHvErwx4"
 sheet = gc.open_by_key(CODE)
 
+# Acessar as abas da planilha
 caminho = "Obrigatórias"
 caminho_eletivas = "Eletivas"
 caminho_optativas = "Optativas"
@@ -36,6 +39,7 @@ excel_obrigatorias = sheet.worksheet(caminho)
 excel_eletivas = sheet.worksheet(caminho_eletivas)
 excel_optativas = sheet.worksheet(caminho_optativas)
 
+# Obter as contagens
 len_semestre1 = len(excel_obrigatorias.col_values(2))
 len_semestre2 = len(excel_obrigatorias.col_values(7))
 len_semestre3 = len(excel_obrigatorias.col_values(12))
