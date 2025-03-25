@@ -1,6 +1,8 @@
 import os
+import time
 import gspread
 from google.oauth2.service_account import Credentials
+from gspread.exceptions import APIError
 
 # Recuperando as variáveis de ambiente
 key_info = {
@@ -43,24 +45,54 @@ CODE = "1B7huX51Ta8nyxYw-Jh04GUSzlhJTezBP6XcpHvErwx4"
 sheet = gc.open_by_key(CODE)
 
 # Acessar as abas da planilha
-caminho = "Obrigatórias"
-caminho_eletivas = "Eletivas"
-caminho_optativas = "Optativas"
-excel_obrigatorias = sheet.worksheet(caminho)
-excel_eletivas = sheet.worksheet(caminho_eletivas)
-excel_optativas = sheet.worksheet(caminho_optativas)
+caminhos = {
+    "obrigatorias": "Obrigatórias",
+    "eletivas": "Eletivas",
+    "optativas": "Optativas"
+}
+
+planilhas = {}
+
+# Sistema de Retry com cache
+def get_planilha(nome):
+    if nome in planilhas:
+        return planilhas[nome]  # Retorna do cache
+    
+    retries = 3
+    for tentativa in range(retries):
+        try:
+            planilhas[nome] = sheet.worksheet(caminhos[nome])  # Busca e armazena no cache
+            return planilhas[nome]
+        except APIError as e:
+            if "Quota exceeded" in str(e):
+                espera = 2 ** tentativa  # 2, 4, 8 segundos
+                print(f"Quota excedida. Tentando novamente em {espera} segundos...")
+                time.sleep(espera)
+            else:
+                raise e  # Se for outro erro, levanta a exceção normalmente
+    raise APIError(f"Falha ao carregar a planilha {nome} após várias tentativas.")
+
+# Obtendo as planilhas com retry e cache
+excel_obrigatorias = get_planilha("obrigatorias")
+excel_eletivas = get_planilha("eletivas")
+excel_optativas = get_planilha("optativas")
+
+# Função otimizada para contar valores em uma coluna sem chamadas repetidas
+def contar_coluna(planilha, col_num):
+    col_values = planilha.col_values(col_num)  # Pega toda a coluna de uma vez
+    return len(col_values)
 
 # Obter as contagens
-len_semestre1 = len(excel_obrigatorias.col_values(2))
-len_semestre2 = len(excel_obrigatorias.col_values(7))
-len_semestre3 = len(excel_obrigatorias.col_values(12))
-len_semestre4 = len(excel_obrigatorias.col_values(17))
-len_semestre5 = len(excel_obrigatorias.col_values(22))
-len_semestre6 = len(excel_obrigatorias.col_values(27))
-len_semestre7 = len(excel_obrigatorias.col_values(32))
-len_semestre8 = len(excel_obrigatorias.col_values(37))
+len_semestre1 = contar_coluna(excel_obrigatorias, 2)
+len_semestre2 = contar_coluna(excel_obrigatorias, 7)
+len_semestre3 = contar_coluna(excel_obrigatorias, 12)
+len_semestre4 = contar_coluna(excel_obrigatorias, 17)
+len_semestre5 = contar_coluna(excel_obrigatorias, 22)
+len_semestre6 = contar_coluna(excel_obrigatorias, 27)
+len_semestre7 = contar_coluna(excel_obrigatorias, 32)
+len_semestre8 = contar_coluna(excel_obrigatorias, 37)
 
-len_semestre4_eletivas = len(excel_eletivas.col_values(2))
-len_semestre5_eletivas = len(excel_eletivas.col_values(7))
+len_semestre4_eletivas = contar_coluna(excel_eletivas, 2)
+len_semestre5_eletivas = contar_coluna(excel_eletivas, 7)
 
-len_optativas = len(excel_optativas.col_values(2))
+len_optativas = contar_coluna(excel_optativas, 2)
