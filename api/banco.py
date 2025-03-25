@@ -14,7 +14,9 @@ if key_json_data is None:
 
 # Decodificar a chave base64
 try:
-    key_info = json.loads(base64.b64decode(key_json_data).decode('utf-8'))
+    # Decodificar a chave base64, e tentar convertê-la para JSON
+    decoded_data = base64.b64decode(key_json_data)
+    key_info = json.loads(decoded_data.decode('utf-8', errors='ignore'))  # Ignora erros de decodificação
 except Exception as e:
     raise ValueError(f"Erro ao decodificar a chave: {e}")
 
