@@ -15,7 +15,7 @@ key_info = {
     "auth_provider_x509_cert_url": os.getenv("GOOGLE_CLOUD_AUTH_PROVIDER_X509_CERT_URL"),
     "client_x509_cert_url": os.getenv("GOOGLE_CLOUD_CLIENT_X509_CERT_URL")
 }
-
+key_info["private_key"] = os.getenv("GOOGLE_CLOUD_PRIVATE_KEY").replace('\\n', '\n')
 # Verificar se todas as variáveis de ambiente estão presentes
 for key, value in key_info.items():
     if value is None:
