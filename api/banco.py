@@ -6,6 +6,7 @@ from google.oauth2.service_account import Credentials
 
 # Recuperar a variável de ambiente
 key_json_data = os.getenv("GOOGLE_KEY_JSON")
+print(key_json_data)
 
 # Verificar se a variável está definida
 if key_json_data is None:
