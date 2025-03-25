@@ -5,14 +5,14 @@ from google.oauth2.service_account import Credentials
 # Recuperando as variáveis de ambiente
 key_info = {
     "type": "service_account",
-    "project_id": os.getenv("GOOGLE_CLOUD_PROJECT_ID"),
-    "private_key_id": os.getenv("GOOGLE_CLOUD_PRIVATE_KEY_ID"),
-    "client_email": os.getenv("GOOGLE_CLOUD_CLIENT_EMAIL"),
-    "client_id": os.getenv("GOOGLE_CLOUD_CLIENT_ID"),
-    "auth_uri": os.getenv("GOOGLE_CLOUD_AUTH_URI"),
-    "token_uri": os.getenv("GOOGLE_CLOUD_TOKEN_URI"),
-    "auth_provider_x509_cert_url": os.getenv("GOOGLE_CLOUD_AUTH_PROVIDER_X509_CERT_URL"),
-    "client_x509_cert_url": os.getenv("GOOGLE_CLOUD_CLIENT_X509_CERT_URL")
+    "project_id": os.getenv("project_id"),
+    "private_key_id": os.getenv("private_key_id"),
+    "client_email": os.getenv("client_email"),
+    "client_id": os.getenv("client_id"),
+    "auth_uri": os.getenv("auth_uri"),
+    "token_uri": os.getenv("token_uri"),
+    "auth_provider_x509_cert_url": os.getenv("auth_provider_x509_cert_url"),
+    "client_x509_cert_url": os.getenv("client_x509_cert_url"),
 }
 
 # Garantir que todas as variáveis estejam definidas
@@ -21,7 +21,7 @@ for key, value in key_info.items():
         raise ValueError(f"A variável de ambiente {key} não está definida.")
 
 # Corrigir a chave privada (substituindo \n)
-private_key = os.getenv("GOOGLE_CLOUD_PRIVATE_KEY")
+private_key = os.getenv("private_key")
 if private_key:
     private_key = private_key.replace('\\n', '\n')
 else:
@@ -29,8 +29,7 @@ else:
 
 key_info["private_key"] = private_key
 
-SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly", 
-          "https://www.googleapis.com/auth/drive"]
+SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 # Criar as credenciais com a chave JSON reconstruída
 creds = Credentials.from_service_account_info(key_info, scopes=SCOPES)
