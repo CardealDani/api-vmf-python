@@ -1,0 +1,421 @@
+@import url(global.css);
+
+body {
+    background-image: var(--background-turno);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#categorias #resultado-categorias button{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    border: 3px solid #FFF;
+    background-color: #FF9128;
+    color: #fff;
+    cursor: pointer;
+}
+
+.fa-sun{
+    font-size: 25px;
+    color: #FF9629;
+}
+
+#resultado-categorias{
+    padding-top: 9px;
+}
+
+#resultado-categorias p{
+    margin-top: 9px;
+}
+
+.arrows {
+    max-width: 60px;
+    width: 60px;
+    max-height: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: #408CFF;
+    cursor: pointer;
+}
+
+
+#corpo {
+    height: 731px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 55px;
+    padding-top: 90px;
+}
+
+#resultado {
+    display: flex;
+    align-items: center;
+    width: 1505px;
+    height: 494px;
+    gap: 103px;
+}
+
+#texto-resultado {
+    width: 541px;
+    height: 356px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #FFF;
+}
+
+#texto-resultado h1 {
+    font-family: var(--font);
+    font-size: 120px;
+
+}
+
+#texto-resultado h2 {
+    font-family: var(--font);
+    font-size: 70px;
+    font-weight: bold;
+}
+
+#card-resultado {
+    width: 861px;
+    height: 394px;
+    display: flex;
+    flex-direction: column;
+}
+
+#card-resultado h3 {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#header-card {
+    width: 860px;
+    height: 100px;
+    background: var(--background-header-card);
+    display: flex;
+    align-items: center;
+    padding: 43px;
+    border-radius: 20px 20px 0 0;
+}
+
+#header-card h3 {
+    font-family: var(--font);
+    font-size: 45px;
+    color: #fff;
+}
+
+#body-resultado {
+    background-color: #fff;
+    width: 861px;
+    height: 389px;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    border-radius: 0 0 20px 20px;
+
+
+}
+
+#cards {
+    display: flex;
+    flex-direction: column;
+    gap: 29px;
+    justify-content: center;
+}
+
+#card-top {
+    display: flex;
+    gap: 29px;
+}
+
+#card-bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 29px;
+}
+
+.card-width {
+    width: 240px;
+    height: 112px;
+    font-size: 30px;
+
+}
+
+.propriedade-card {
+    background-color: var(--background-propriedade-card);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+#horas_livres {
+    font-size: 30px;
+}
+
+#horas_complementares {
+    font-size: 22px;
+}
+
+#tcc {
+    font-size: 22px;
+}
+
+
+.column_card {
+    width: 375px;
+    height: 47px;
+    background-color: var(--background-propriedade-card);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 20px;
+}
+
+#horas_livres {
+    width: 377px;
+    height: 104px;
+}
+
+#horas_tcc {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#detalhes {
+    width: 100%;
+    font-family: var(--font);
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    
+}
+
+#detalhes img{
+    width: 28px;
+    height: 28px;
+}
+
+.card {
+    border-radius: 20px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+}
+
+.card h4 {
+    font-family: var(--font);
+    font-weight: 100;
+    line-height: 1.2;
+}
+
+#exportar {
+    position: relative;
+    left: 570px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 43px;
+    text-align: center;
+    font-weight: 100;
+    margin-bottom: 90px;
+}
+
+.exportar {
+    width: 204px;
+    height: 62px;
+    background-color: #408CFF;
+    color: #fff;
+    font-family: var(--font);
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 45px;
+    cursor: pointer;
+    border: none;
+}
+
+.popup-wrappep-enviar-email{
+    display: none; 
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-enviar-email{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: 666px;
+    max-height: 349px;
+    margin:auto;
+    background: var( --popup-diurno-noturno);
+    border-radius: 20px;
+}
+
+.popup-content-enviar-email{
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px 0;
+}
+
+.popup-content-enviar-email h2{
+    max-width: 576px;
+    color: white;
+    font-family: var(--font);
+    font-size: 40px;
+}
+
+.popup-content-enviar-email input{
+    max-width: 606px;
+    width: 606px;
+    max-height: 45px;
+    font-size: 20px;
+    padding: 12px 11px;
+    border-radius: 10px;
+    border: 2px solid #A9A9A9;
+    background: #F0F0F0
+}
+
+.popup-content-enviar-email p{
+    max-width: 606px;
+    color: white;
+    font-family: var(--default-font);
+    font-size: 23px;
+}
+
+.popup-btns-enviar-email{
+    display: flex;
+}
+
+.popup-btns-enviar-email button{
+  width: 333px;
+  height: 87px;
+  font-family: var(--font);
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+
+}
+
+#cancelar{
+    border-radius: 0 0 0 20px;
+    border: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.283);
+}
+
+#enviar{
+    border-radius: 0 0 20px 0;
+    border: none;
+    border-left: 1px solid rgba(0, 0, 0, 0.283);
+}
+
+/* ALTERAR O DISPLAY COM EMAIL ENVIADO */
+.popup-wrappep-email-enviado{
+    display: none; 
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.borda-popup{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: 667px;
+    max-height: 318px;
+    margin:auto;
+    background: var(--borda-feedback-enviar);
+    padding: 5px;
+    border-radius: 20px;
+}
+
+.popup-enviar-email-enviado{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    max-width: 667px;
+    max-height: 318px;
+    margin:auto;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.popup-enviar-email-enviado img{
+    position: absolute;
+    left: 250px;
+    top: -85px;
+}
+
+.popup-enviar-email-enviado p{
+    font-size: 50px;
+    font-weight: bold;
+    font-family: var(--font);
+    margin-bottom: 25px;
+    padding-top: 70px;
+}
+
+.popup-enviar-email-enviado button{
+    max-width: 148px;
+    max-height: 73px;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: var(--font);
+    color: white;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 21px;
+    background: var(--borda-feedback-enviar);
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+/* ALTERAR O DISPLAY COM PDF ENVIADO */
+.popup-wrappep-pdf-enviado{
+    display: none; 
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

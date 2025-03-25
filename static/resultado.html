@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/resultado.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
+        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script src="script/resultado.js" defer></script>
+    <title>Vou Me Formar? - SMD</title>
+</head>
+
+<body>
+
+    <div id="header">
+        <div class="logo-turno-simulador">
+            <a href="landing-page.html"><img src="assets/icon/logo-white-vmf.png" alt=""></a>
+            <a href="simulador-turnos.html">
+                <div class="turno-simulador">
+                    <i id="i_turno" class="fas"></i>
+                    <p id="nome_turno"></p>
+                </div>
+            </a>
+        </div>
+        <div id="categorias">
+            <div id="obrigatorias-categorias" class="valor-categorias">
+                <a href="simulador-obrigatorias.html"><button>1</button></a>
+                <p>Obrigatórias</p>
+            </div>
+            <div id="eletivas-categorias" class="valor-categorias">
+                <a href="simulador-eletivas.html"><button>2</button></a>
+                <p>Eletivas</p>
+            </div>
+            <div id="optativas-categorias" class="valor-categorias">
+                <a href="simulador-optativas.html"><button>3</button></a>
+                <p>Optativas</p>
+            </div>
+            <div id="tcc-categorias" class="valor-categorias">
+                <a href="simulador-tcc.html"><button>4</button></a>
+                <p>Tcc e Horas</p>
+            </div>
+            <div id="resultado-categorias" class="valor-categorias">
+                <a href="#"><button>5</button></a>
+                <p>Resultado</p>
+            </div>
+        </div>
+    </div>
+    <div id="corpo">
+        <main>
+            <a href="simulador-tcc.html"><button class="arrows" onclick="armazenarCadeiras()"><img
+                        src="assets/icon/arrow-left.png"></button></a>
+            <div id="resultado">
+                <div id="texto-resultado">
+                    <h1 id="h1-texto">Quase lá!</h1>
+                    <h2 id="h2-texto">Você ainda não está apto a se formar.</h2>
+                </div>
+                <div id="card-resultado">
+                    <div id="header-card">
+                        <h3>Resultados</h3>
+                    </div>
+                    <div id="body-resultado">
+                        <div id="cards">
+                            <div id="card-top">
+                                <div class="card card-width propriedade-card" id="obrigatorias">
+                                    <h4>Obrigatórias</h3>
+                                        <h4 id="qtd_obrigatoria">0/21</h3>
+                                </div>
+                                <div class="card card-width propriedade-card" id="eletivas">
+                                    <h4>Eletivas</h3>
+                                        <h4 id="qtd_eletiva">0/7</h3>
+                                </div>
+                                <div class="card card-width propriedade-card" id="optativas">
+                                    <h4>Optativas</h3>
+                                        <h4 id="qtd_optativa">0/12</h3>
+                                </div>
+                            </div>
+                            <div id="card-bottom">
+                                <div class="card propriedade-card" id="horas_livres">
+                                    <h4 id="qtd_optativa_livre">Horas de Optativas Livres 0h</h3>
+                                </div>
+                                <div id="horas_tcc">
+                                    <div class="card  column_card" id="horas_complementares">
+                                        <h4 id="qtd_complementares">Horas Complementares 0h/192h</h3>
+                                    </div>
+                                    <div class="card  column_card" id="tcc">
+                                        <h4 id="tcc_consolidado">TCC sem nota consolidada</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="detalhes">
+                            <label for="detalhes">
+                                <h3 id="detalhes">Ver Detalhes <img src="assets/icon/ver-detalhes-icone.svg"></h3>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div id="exportar">
+            <button class="exportar" id="pdf">
+                <h4>Baixar Pdf de resultados</h4>
+            </button>
+        </div>
+    </div>
+     
+
+    <div class="popup-wrappep-pdf-enviado">
+        <div class="borda-popup">
+            <div class="popup-enviar-email-enviado">
+                <img id="img-enviar-pdf" src="assets/icon/feedback-enviado.png">
+                <p>PDF baixado!</p>
+                <button id="fechar-enviar-pdf">Ok </button>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/031d3efb46.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

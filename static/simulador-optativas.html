@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/simulador-optativas.css">
+    <script src="script/simulador-optativas.js" defer></script>
+    <title>Vou Me Formar? - SMD</title>
+</head>
+
+<body>
+    <div id="header">
+        <div class="logo-turno-simulador">
+            <a href="landing-page.html"><img src="assets/icon/logo-white-vmf.png" alt=""></a>
+            <a href="simulador-turnos.html">
+                <div class="turno-simulador">
+                    <i id="i_turno" class="fas"></i>
+                    <p id="nome_turno"></p>
+                </div>
+            </a>
+        </div>
+        <div id="categorias">
+            <div id="obrigatorias-categorias" class="valor-categorias">
+                <a href="simulador-obrigatorias.html"><button onclick="armazenarCadeiras()">1</button></a>
+                <p>Obrigatórias</p>
+            </div>
+            <div id="eletivas-categorias" class="valor-categorias">
+                <a href="simulador-eletivas.html"><button onclick="armazenarCadeiras()">2</button></a>
+                <p>Eletivas</p>
+            </div>
+            <div id="optativas-categorias" class="valor-categorias">
+                <button>3</button>
+                <p>Optativas</p>
+            </div>
+            <div id="tcc-categorias" class="valor-categorias">
+                <a href="simulador-tcc.html"><button onclick="armazenarCadeiras()">4</button></a>
+                <p>Tcc e Horas</p>
+            </div>
+            <div id="resultado-categorias" class="valor-categorias">
+                <a href="#"><button onclick="armazenarCadeiras()">5</button></a>
+                <p>Resultado</p>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <a href="simulador-eletivas.html"><button class="arrows" onclick="armazenarCadeiras()"><img
+                    src="assets/icon/arrow-left.png"></button></a>
+        <div id="disciplina">
+            <div id="h1-optativas">
+                <h1>Optativas</h1>
+            </div>
+            <div id="content-optativas">
+                <div id="optativas">
+                    <div id="cadeiras-optativas">
+                        <div class="header-cadeiras-optativas">
+                            <div class="div-glass">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <input type="text" name="busca" id="busca" oninput="pesquisar()"
+                                placeholder="Pesquise por optativas do SMD">
+                        </div>
+                        <div class="scroll-optativas">
+                            <form id="form-cadeiras">
+                            </form>
+                        </div>
+                    </div>
+                    <div id="optativas-escolhidas">
+                        <div class="header-optativas-escolhidas">
+                            <h3>Adicionadas</h3>
+                        </div>
+                        <div class="fundo-optativas-escolhidas">
+                            <form id="form-optativas-escolhidas">
+                            </form>
+                            <p>*Eletivas cursadas a mais</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="optativas-livres">
+                    <h1>Optativas Livres <i id="question" class="fa-regular fa-circle-question" width="23px"></i></h1>
+                    <div id="div_horas">
+                        <input type="number" id="horas_livres" min="0" size="2" maxlength="3"
+                            onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                            placeholder="Insira a sua quantidade de horas optativas livres ">
+                    </div>
+                    <p id="saiba-mais">Saiba aqui como descobrir suas horas de optativas livres, caso tenha feito!</p>
+
+                </div>
+            </div>
+            <button id="limpar" class="redefinir" onclick="limpar()">Limpar</button>
+            <div class="div-descricao-disciplina">
+                <div class="div-balao-de-fala">
+                    <img src="assets/icon/balao-de-fala-simulador.svg" alt="">
+                </div>
+                <div class="descricao-disciplina">
+                    <p>Você pode fazer mais de 80 optativas dentro do SMD! Mas caso tenha feito alguma(s) optativa(s)
+                        livre(s) dentro da UFC, é só colocar o números de horas correspondente a ela(s) na caixa ali em
+                        cima.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="popup-wrappep" class="popup-wrappep">
+            <div class="popup">
+                <div class="popup-content">
+                    <img id="btn_close_popup" src="assets/icon/close-popup.png">
+                    <h2 id="nome_cadeira"></h2>
+                    <hr>
+                    <h4> <b>Tipo:</b> Optativas</h4>
+                    <h4 id="pre-requisito"></h4>
+                    <h4 id="qtd_horas"></h4>
+                </div>
+                <div class="popup-info">
+                    <h4 id="objetivo"></h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="popup-wrappep-horas" class="popup-wrappep-horas">
+            <div class="popup-horas">
+                <div class="popup-content-horas">
+                    <img id="btn_close_popup-horas" src="assets/icon/close-popup.png">
+                    <h2>O que são optativas livres?</h3>
+                        <p id="info-optativas"></p>
+                </div>
+                <div class="popup-info-horas">
+                    <h3>Não sabe como ver suas horas de optativas livres? Se liga no tutorial aqui!</h3>
+                    <ul>
+                        <li>1. Abra o SIGAA e entre com seu login e senha.</li>
+                        <li>2. Acesse o Portal do Discente</li>
+                        <li>3. No menu horizontal, acesse Ensino > Consultas do Discente > Pendências da Conclusão</li>
+                        <li>4. Na nova página, desça a tela até encontrar 'Limites da Estrutura Curricular'</li>
+                        <li>5. Na seção de Componentes Optativos Livres, veja ‘Integralizado’</li>
+                        <li>6. Pronto! :)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="simulador-tcc.html"><button class="arrows" onclick="armazenarCadeiras()"><img
+                    src="assets/icon/arrow-right.png"></button></a>
+    </div>
+    <div class="popup-wrappep-limpar">
+        <div class="popup-limpar">
+            <div class="popup-content-limpar">
+                <h2>Tem certeza de que deseja limpar a página atual?</h2>
+                <p>Todas as caixas marcadas serão deselecionadas e essa ação não poderá ser desfeita!</p>
+            </div>
+            <div class="popup-btns-limpar">
+                <button id="btn-limpar" class="btn-limpar">Limpar</button>
+                <button id="btn-nao-limpar" class="btn-nao-limpar">Não limpar</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/031d3efb46.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
