@@ -13,6 +13,7 @@ key_info = {
     "token_uri": os.getenv("token_uri"),
     "auth_provider_x509_cert_url": os.getenv("auth_provider_x509_cert_url"),
     "client_x509_cert_url": os.getenv("client_x509_cert_url"),
+    "universe_domain": os.getenv("universe_domain"),
 }
 
 # Garantir que todas as variáveis estejam definidas

@@ -1,52 +1,40 @@
 
 async function request() {
-  // localStorage.clear()
-
   if (!localStorage.getItem('arquivosArmazenados')) {
     console.log("Carregando dados")
-    // const loading = document.getElementById("loading")
-    // const text_loading = document.getElementById("text_loading")
-    const totalRequests = 3
-    let progress = 0
-    // text_loading.innerText = `Carregando: 0`
+    const totalRequests = 3;
+    let progress = 0;
 
     const updateProgress = () => {
-      progress++
-      const percentage = Math.round((progress * 100) / totalRequests)
-      // text_loading.innerText = `Carregando: ${percentage}%`
-
-
+      progress++;
+      const percentage = Math.round((progress * 100) / totalRequests);
+      console.log(`Progresso: ${percentage}%`);
     }
-    console.log(`Progresso: 0%`)
 
-    // Requisição 1
-    await axios.get("http://127.0.0.1:8000/obrigatorias")
-      .then(response => {
-        localStorage.setItem("obrigatorias", JSON.stringify(response.data))
-        updateProgress()
-      })
+    try {
+      // Requisição 1
+      const obrigatoriasResponse = await axios.get("https://api-vmf-python.vercel.app/obrigatorias");
+      localStorage.setItem("obrigatorias", JSON.stringify(obrigatoriasResponse.data));
+      updateProgress();
 
-    // Requisição 2
-    await axios.get("http://127.0.0.1:8000/eletivas")
-      .then(response => {
-        localStorage.setItem("eletivas", JSON.stringify(response.data))
-        updateProgress()
-      })
+      // Requisição 2
+      const eletivasResponse = await axios.get("https://api-vmf-python.vercel.app/eletivas");
+      localStorage.setItem("eletivas", JSON.stringify(eletivasResponse.data));
+      updateProgress();
 
-    // Requisição 3
-    await axios.get("http://127.0.0.1:8000/optativas")
-      .then(response => {
-        localStorage.setItem("optativas", JSON.stringify(response.data))
-        updateProgress()
-      })
+      // Requisição 3
+      const optativasResponse = await axios.get("https://api-vmf-python.vercel.app/optativas");
+      localStorage.setItem("optativas", JSON.stringify(optativasResponse.data));
+      updateProgress();
 
-    localStorage.setItem('arquivosArmazenados', true)
-    console.log("Dados Carregados")
-    // loading.style.display = "none"
+      localStorage.setItem('arquivosArmazenados', true);
+      console.log("Dados Carregados");
+
+    } catch (error) {
+      console.error("Erro ao carregar dados:", error);
+    }
   } else {
-    // loading.style.display = "none"
-
-    console.log("Arquivos já em localStorage")
+    console.log("Arquivos já em localStorage");
   }
 }
 
