@@ -4,8 +4,6 @@ from api import banco
 
 app = FastAPI()
 
-
-
 @app.get('/')
 def landingPage():
     return {"Mensagem:":"Teste Levi"}
